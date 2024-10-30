@@ -1,6 +1,5 @@
 from interfaces.imessage import IMessage
 
-
 class Message(IMessage):
     """
     Класс Message представляет базовое почтовое сообщение.
@@ -21,3 +20,7 @@ class Message(IMessage):
     def print(self):
         """Выводит текст сообщения в консоль."""
         print(self.__content)
+
+    def get_content(self) -> str:
+        """Возвращает текст сообщения."""
+        return self.__content

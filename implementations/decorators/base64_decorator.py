@@ -1,12 +1,13 @@
 from interfaces.imessage import IMessage
 import base64
-import io
-from contextlib import redirect_stdout
 
 
 class Base64Decorator(IMessage):
     """
     Декоратор Base64Decorator кодирует содержимое сообщения в Base64.
+
+    Attributes:
+        __message (IMessage): Базовое сообщение, которое декорируется.
     """
 
     def __init__(self, message: IMessage):
@@ -19,15 +20,18 @@ class Base64Decorator(IMessage):
         self.__message = message
 
     def print(self):
-        """
-        Захватывает вывод содержимого сообщения, кодирует его в Base64 и выводит.
-        """
-        buffer = io.StringIO()
-        with redirect_stdout(buffer):
-            self.__message.print()
-
-        encoded_message = self._encode_to_base64(buffer.getvalue())
+        """Выводит закодированное в Base64 сообщение."""
+        encoded_message = self._encode_to_base64(self.__message.get_content())
         print(encoded_message, end="")
+
+    def get_content(self) -> str:
+        """
+        Возвращает сообщение, закодированное в Base64.
+
+        Returns:
+            str: Закодированная строка в формате Base64.
+        """
+        return self._encode_to_base64(self.__message.get_content())
 
     def _encode_to_base64(self, content: str) -> str:
         """
@@ -40,4 +44,3 @@ class Base64Decorator(IMessage):
             str: Закодированная строка в формате Base64.
         """
         return base64.b64encode(content.encode()).decode()
-
