@@ -6,7 +6,7 @@ class Message(IMessage):
     Класс Message представляет базовое почтовое сообщение.
 
     Attributes:
-        content (str): Текст сообщения.
+        __content (str): Текст сообщения.
     """
 
     def __init__(self, content: str):
@@ -14,10 +14,10 @@ class Message(IMessage):
         Инициализирует экземпляр Message с указанным содержимым.
 
         Args:
-            content (str): Текст сообщения.
+            __content (str): Текст сообщения.
         """
-        self.content = content
+        self.__content = content
 
     def print(self):
         """Выводит текст сообщения в консоль."""
-        print(self.content)
+        print(self.__content)
