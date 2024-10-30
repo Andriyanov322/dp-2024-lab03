@@ -1,8 +1,8 @@
 import unittest
 from io import StringIO
 from contextlib import redirect_stdout
-from message import Message
-from decorators import HeaderDecorator, SignatureDecorator, DateDecorator, Base64Decorator
+from implementations.message import Message
+from implementations.decorators import HeaderDecorator, SignatureDecorator, DateDecorator, Base64Decorator
 from datetime import datetime
 import base64
 
