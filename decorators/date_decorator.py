@@ -1,10 +1,10 @@
-from datetime import datetime
 from interfaces.imessage import IMessage
+from datetime import datetime
 
 class DateDecorator(IMessage):
     def __init__(self, message: IMessage):
-        self._message = message
+        self.message = message
 
     def print(self):
-        self._message.print()
-        print(f"\nДата: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        self.message.print()
+        print(datetime.now().strftime("%d.%m.%Y"))

@@ -2,9 +2,9 @@ from interfaces.imessage import IMessage
 
 class SignatureDecorator(IMessage):
     def __init__(self, message: IMessage, signature: str):
-        self._message = message
-        self._signature = signature
+        self.message = message
+        self.signature = signature
 
     def print(self):
-        self._message.print()
-        print(f"\nС уважением,\n{self._signature}")
+        self.message.print()
+        print(self.signature)

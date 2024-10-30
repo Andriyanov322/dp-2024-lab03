@@ -2,9 +2,9 @@ from interfaces.imessage import IMessage
 
 class HeaderDecorator(IMessage):
     def __init__(self, message: IMessage, header: str):
-        self._message = message
-        self._header = header
+        self.message = message
+        self.header = header
 
     def print(self):
-        print(f"{self._header}\n" + "-" * len(self._header))
-        self._message.print()
+        print(self.header)
+        self.message.print()

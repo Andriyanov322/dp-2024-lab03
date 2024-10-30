@@ -4,8 +4,3 @@ class IMessage(ABC):
     @abstractmethod
     def print(self):
         pass
-
-    @property
-    @abstractmethod
-    def text(self) -> str:
-        pass
