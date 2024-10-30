@@ -15,13 +15,13 @@ class SignatureDecorator(IMessage):
         Инициализирует декоратор подписи с базовым сообщением и подписью.
 
         Args:
-            message (IMessage): Объект сообщения для декорирования.
-            signature (str): Подпись, которая будет добавлена в конце сообщения.
+            __message (IMessage): Объект сообщения для декорирования.
+            __signature (str): Подпись, которая будет добавлена в конце сообщения.
         """
-        self.message = message
-        self.signature = signature
+        self.__message = message
+        self.__signature = signature
 
     def print(self):
         """Выводит содержимое сообщения, а затем подпись."""
-        self.message.print()
-        print(self.signature)
+        self.__message.print()
+        print(self.__signature)

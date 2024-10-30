@@ -15,11 +15,11 @@ class DateDecorator(IMessage):
         Инициализирует декоратор даты с базовым сообщением.
 
         Args:
-            message (IMessage): Объект сообщения для декорирования.
+            __message (IMessage): Объект сообщения для декорирования.
         """
-        self.message = message
+        self.__message = message
 
     def print(self):
         """Выводит содержимое сообщения, а затем текущую дату в формате ДД.ММ.ГГГГ."""
-        self.message.print()
+        self.__message.print()
         print(datetime.now().strftime("%d.%m.%Y"))

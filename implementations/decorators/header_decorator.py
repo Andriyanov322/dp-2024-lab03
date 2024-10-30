@@ -15,13 +15,13 @@ class HeaderDecorator(IMessage):
         Инициализирует декоратор заголовка с базовым сообщением и заголовком.
 
         Args:
-            message (IMessage): Объект сообщения для декорирования.
-            header (str): Заголовок, который будет добавлен перед сообщением.
+            __message (IMessage): Объект сообщения для декорирования.
+            __header (str): Заголовок, который будет добавлен перед сообщением.
         """
-        self.message = message
-        self.header = header
+        self.__message = message
+        self.__header = header
 
     def print(self):
         """Выводит заголовок, а затем содержимое сообщения."""
-        print(self.header)
-        self.message.print()
+        print(self.__header)
+        self.__message.print()
