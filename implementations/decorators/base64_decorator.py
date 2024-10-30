@@ -7,9 +7,6 @@ from contextlib import redirect_stdout
 class Base64Decorator(IMessage):
     """
     Декоратор Base64Decorator кодирует содержимое сообщения в Base64.
-
-    Attributes:
-        __message (IMessage): Базовое сообщение, которое декорируется.
     """
 
     def __init__(self, message: IMessage):
@@ -23,14 +20,24 @@ class Base64Decorator(IMessage):
 
     def print(self):
         """
-        Захватывает вывод содержимого сообщения в строковый буфер,
-        кодирует его в Base64 и выводит закодированную строку.
+        Захватывает вывод содержимого сообщения, кодирует его в Base64 и выводит.
         """
         buffer = io.StringIO()
-        # Перенаправляем вывод в буфер и вызываем print у декорированного сообщения
         with redirect_stdout(buffer):
             self.__message.print()
 
-        # Кодируем содержимое буфера в Base64
-        encoded_message = base64.b64encode(buffer.getvalue().encode()).decode()
+        encoded_message = self._encode_to_base64(buffer.getvalue())
         print(encoded_message, end="")
+
+    def _encode_to_base64(self, content: str) -> str:
+        """
+        Кодирует переданный текст в Base64.
+
+        Args:
+            content (str): Текст для кодирования.
+
+        Returns:
+            str: Закодированная строка в формате Base64.
+        """
+        return base64.b64encode(content.encode()).decode()
+
