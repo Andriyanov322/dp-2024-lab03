@@ -1,7 +1,7 @@
 from interfaces.imessage import IMessage
 import base64
 import io
-import sys
+from contextlib import redirect_stdout
 
 
 class Base64Decorator(IMessage):
@@ -23,14 +23,14 @@ class Base64Decorator(IMessage):
 
     def print(self):
         """
-        Перенаправляет вывод содержимого сообщения в строковый буфер,
-        кодирует его в Base64 и выводит закодированную строку в консоль.
+        Захватывает вывод содержимого сообщения в строковый буфер,
+        кодирует его в Base64 и выводит закодированную строку.
         """
-        # Перенаправляем вывод в строковый буфер для кодирования
-        original_stdout = sys.stdout
-        sys.stdout = buffer = io.StringIO()
-        self.message.print()
-        sys.stdout = original_stdout
+        buffer = io.StringIO()
+        # Перенаправляем вывод в буфер и вызываем print у декорированного сообщения
+        with redirect_stdout(buffer):
+            self.message.print()
 
-        # Кодируем содержимое в Base64
-        encoded_message = base64.b64encode(buffer.getvalue().encode()).decode
+        # Кодируем содержимое буфера в Base64
+        encoded_message = base64.b64encode(buffer.getvalue().encode()).decode()
+        print(encoded_message, end="")  # Убираем автоматическое добавление новой строки
