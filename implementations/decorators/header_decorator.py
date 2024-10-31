@@ -1,16 +1,15 @@
-from interfaces.imessage import IMessage
+from .base_decorator import BaseDecorator
 
-
-class HeaderDecorator(IMessage):
+class HeaderDecorator(BaseDecorator):
     """
     Декоратор HeaderDecorator добавляет заголовок к почтовому сообщению.
 
     Attributes:
-        message (IMessage): Базовое сообщение, которое декорируется.
-        header (str): Текст заголовка, добавляемый перед сообщением.
+        _message (IMessage): Базовое сообщение, которое декорируется.
+        _header (str): Текст заголовка, добавляемый перед сообщением.
     """
 
-    def __init__(self, message: IMessage, header: str):
+    def __init__(self, message, header: str):
         """
         Инициализирует декоратор заголовка с базовым сообщением и заголовком.
 
@@ -18,13 +17,13 @@ class HeaderDecorator(IMessage):
             message (IMessage): Объект сообщения для декорирования.
             header (str): Заголовок, который будет добавлен перед сообщением.
         """
-        self.__message = message
-        self.__header = header
+        super().__init__(message)
+        self._header = header
 
     def print(self):
         """Выводит заголовок, а затем содержимое сообщения."""
-        print(self.__header)
-        self.__message.print()
+        print(self._header)
+        self._message.print()
 
     def get_content(self) -> str:
         """
@@ -33,4 +32,4 @@ class HeaderDecorator(IMessage):
         Returns:
             str: Текст с заголовком перед сообщением.
         """
-        return f"{self.__header}\n{self.__message.get_content()}"
+        return f"{self._header}\n{self._message.get_content()}"

@@ -1,16 +1,15 @@
-from interfaces.imessage import IMessage
+from .base_decorator import BaseDecorator
 
-
-class SignatureDecorator(IMessage):
+class SignatureDecorator(BaseDecorator):
     """
     Декоратор SignatureDecorator добавляет подпись к почтовому сообщению.
 
     Attributes:
-        message (IMessage): Базовое сообщение, которое декорируется.
-        signature (str): Текст подписи, добавляемый в конце сообщения.
+        _message (IMessage): Базовое сообщение, которое декорируется.
+        _signature (str): Текст подписи, добавляемый в конце сообщения.
     """
 
-    def __init__(self, message: IMessage, signature: str):
+    def __init__(self, message, signature: str):
         """
         Инициализирует декоратор подписи с базовым сообщением и подписью.
 
@@ -18,13 +17,13 @@ class SignatureDecorator(IMessage):
             message (IMessage): Объект сообщения для декорирования.
             signature (str): Подпись, которая будет добавлена в конце сообщения.
         """
-        self.__message = message
-        self.__signature = signature
+        super().__init__(message)
+        self._signature = signature
 
     def print(self):
         """Выводит содержимое сообщения, а затем подпись."""
-        self.__message.print()
-        print(self.__signature)
+        self._message.print()
+        print(self._signature)
 
     def get_content(self) -> str:
         """
@@ -33,4 +32,4 @@ class SignatureDecorator(IMessage):
         Returns:
             str: Текст сообщения с подписью.
         """
-        return f"{self.__message.get_content()}\n{self.__signature}"
+        return f"{self._message.get_content()}\n{self._signature}"
