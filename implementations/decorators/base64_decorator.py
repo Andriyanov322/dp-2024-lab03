@@ -11,8 +11,7 @@ class Base64Decorator(BaseDecorator):
 
     def print(self):
         """Выводит закодированное в Base64 сообщение."""
-        encoded_message = self._encode_to_base64(self._message.get_content())
-        print(encoded_message, end="")
+        print(self.get_content(), end="")
 
     def get_content(self) -> str:
         """
