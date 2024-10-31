@@ -1,8 +1,5 @@
 from implementations.message import Message
-from implementations.decorators.header_decorator import HeaderDecorator
-from implementations.decorators.signature_decorator import SignatureDecorator
-from implementations.decorators.date_decorator import DateDecorator
-from implementations.decorators.base64_decorator import Base64Decorator
+from implementations.decorators import HeaderDecorator, SignatureDecorator, DateDecorator, Base64Decorator
 
 
 def main():
