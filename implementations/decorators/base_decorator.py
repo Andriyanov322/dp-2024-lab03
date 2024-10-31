@@ -21,11 +21,8 @@ class BaseDecorator(IMessage):
         self._content = content
 
     def print(self):
-        """Выводит содержимое базового сообщения или контент, если нет декорируемого объекта."""
-        if self._message:
-            self._message.print()
-        else:
-            print(self._content)
+        """Выводит только content, если нет декорируемого объекта."""
+        print(self._content)
 
     def get_content(self) -> str:
         """Возвращает содержимое базового сообщения или контент, если нет декорируемого объекта."""
