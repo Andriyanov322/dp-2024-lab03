@@ -22,8 +22,7 @@ class SignatureDecorator(BaseDecorator):
 
     def print(self):
         """Выводит содержимое сообщения, а затем подпись."""
-        self._message.print()
-        print(self._signature)
+        print(self.get_content())
 
     def get_content(self) -> str:
         """

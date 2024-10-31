@@ -22,8 +22,7 @@ class HeaderDecorator(BaseDecorator):
 
     def print(self):
         """Выводит заголовок, а затем содержимое сообщения."""
-        print(self._header)
-        self._message.print()
+        print(self.get_content())
 
     def get_content(self) -> str:
         """
